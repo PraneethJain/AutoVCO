@@ -24,7 +24,7 @@ model = keras.Sequential(
     ]
 )
 
-model.compile(optimizer="adam", loss="mean_squared_error")
+model.compile(optimizer="adam", loss="mape")
 model.fit(X, y, epochs=1000)
 with open("model.pk", "wb") as f:
     pickle.dump(model, f)
