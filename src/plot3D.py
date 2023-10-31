@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
 from matplotlib import cm
 
 X = []
