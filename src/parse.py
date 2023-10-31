@@ -1,7 +1,7 @@
 import csv
 from rich import print
 
-for i in range(1, 3):
+for i in range(1, 4):
     with open(f"data/dataset{i}.csv", newline="") as csvfile:
         row1, row2 = csv.reader(csvfile, delimiter=",")
         row1 = row1[1:]

@@ -4,12 +4,15 @@ import pickle
 
 X = []
 y = []
-with open("data/formatted_dataset2.txt", "r") as f:
+with open("data/formatted_dataset3.txt", "r") as f:
     for line in f.readlines():
-        x1, x2, yi = map(float, line.split())
-        if 1 <= x2 <= 3.6 and yi < 1000:
-            X.append([x1, x2])
-            y.append(yi)
+        try:
+            x1, x2, yi = map(float, line.split())
+            if 1 <= x2 <= 3.6 and yi < 1000:
+                X.append([x1, x2])
+                y.append(yi)
+        except ValueError:
+            continue
 
 X = np.array(X)
 y = np.array(y)
