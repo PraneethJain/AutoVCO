@@ -26,4 +26,4 @@ fig.colorbar(surf)
 fig.tight_layout()
 
 # plt.show()
-plt.savefig("3D.png")
+plt.savefig("plots/3D.png")
