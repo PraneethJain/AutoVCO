@@ -1,5 +1,4 @@
 import csv
-from rich import print
 
 for i in range(1, 4):
     with open(f"data/dataset{i}.csv", newline="") as csvfile:

@@ -4,13 +4,12 @@ import pickle
 
 X = []
 y = []
-with open("data/formatted_dataset3.txt", "r") as f:
+with open("data/formatted_dataset4.txt", "r") as f:
     for line in f.readlines():
         try:
-            x1, x2, yi = map(float, line.split())
-            if 1 <= x2 <= 3.6 and yi < 1000:
-                X.append([x1, x2])
-                y.append(yi)
+            x1, x2, x3, yi = map(float, line.split())
+            X.append([x1, x2, x3])
+            y.append(yi)
         except ValueError:
             continue
 
@@ -19,7 +18,7 @@ y = np.array(y)
 
 model = keras.Sequential(
     [
-        keras.layers.Input(shape=(2,)),
+        keras.layers.Input(shape=(3,)),
         keras.layers.Dense(10, activation="relu"),
         keras.layers.Dense(10, activation="relu"),
         keras.layers.Dense(10, activation="relu"),
@@ -28,6 +27,6 @@ model = keras.Sequential(
 )
 
 model.compile(optimizer="adam", loss="mape")
-model.fit(X, y, epochs=1000)
+model.fit(X, y, epochs=250)
 with open("model.pk", "wb") as f:
     pickle.dump(model, f)
