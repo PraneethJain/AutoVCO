@@ -1,3 +1,4 @@
+from everywhereml.code_generators.tensorflow import tf_porter
 from tensorflow import keras
 import numpy as np
 import pickle
@@ -30,3 +31,8 @@ model.compile(optimizer="adam", loss="mape")
 model.fit(X, y, epochs=250)
 with open("model.pk", "wb") as f:
     pickle.dump(model, f)
+
+porter = tf_porter(model, X, y)
+cpp_code = porter.to_cpp(instance_name="neural", arena_size=4096)
+with open("neural.h", "w") as f:
+    f.write(cpp_code)
