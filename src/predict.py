@@ -15,9 +15,9 @@ with open("model.pk", "rb") as f:
 # data = curRef.get();
 # print(data)
 # actual_frequency = data["frequency"]
-actual_frequency = 493.0
+actual_frequency = 647
 # X = [[data["temperature"], float(input("Control Voltage: ")), data["voltage"]]]
-X = [[29.3, 1.96, 3.70]]
+X = [[29.0, 1.97, 3.75]]
 predictions = model.predict(X)
 for i in range(len(predictions)):
     print(f"Input: {X[i]}, Predicted Output: {predictions[i][0]}")

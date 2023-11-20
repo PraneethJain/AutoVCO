@@ -1,4 +1,4 @@
-from everywhereml.code_generators.tensorflow import tf_porter
+from tinymlgen import port
 from tensorflow import keras
 import numpy as np
 import pickle
@@ -32,7 +32,11 @@ model.fit(X, y, epochs=250)
 with open("model.pk", "wb") as f:
     pickle.dump(model, f)
 
-porter = tf_porter(model, X, y)
-cpp_code = porter.to_cpp(instance_name="neural", arena_size=4096)
+x = port(model, optimize=False)
 with open("neural.h", "w") as f:
-    f.write(cpp_code)
+    f.write(x)
+# model_weights = model.get_weights()
+
+# with open("model_weights.txt", "w") as file:
+#     for i in range(len(model_weights)):
+#         np.savetxt(file, model_weights[i], delimiter=",")
