@@ -1,12 +1,16 @@
-from rich import print
+with open("ok.csv") as f:
+    line1, line2 = f.readlines()
+    
+datas1 = line1.split(",")[1:]
+datas2 = line2.split(",")[1:]
 
-with open("data/dataset4.txt") as f:
-    inputs, output = f.readlines()
-
-inps = []
-outs = []
-with open("data/formatted_dataset4.txt", "w") as f:
-    for inp, out in zip(inputs.split(","), output.split(",")):
-        f.write(
-            f"{' '.join([val.split('=')[-1] for val in inp.split()])} {out.strip()}\n"
-        )
+with open("data/dataset5.csv", "w") as f:
+    for x, y in zip(datas1, datas2):
+        try:
+            temperature, control_voltage, input_voltage = [float(z.split("=")[-1]) for z in x.split()]
+            frequency = float(y)
+            if control_voltage < 1.3 or input_voltage == 2.0 or control_voltage > input_voltage:
+                continue
+            f.write(f"{temperature} {control_voltage} {input_voltage} {frequency}\n")
+        except:
+            continue
